@@ -132,4 +132,25 @@ public static void main(String[] args) {
 
   * compiler et éxécuter: `mvn clean package; mvn -q exec:java` 
 
+## Étape 2 : Cas de test
+
+  * Créer un classe `TestCase`
+      * Avec une méthode abstraite protégée `test`
+      * Et une méthode publique `run` qui reprend le patron du try/catch précédent
+      * Rajouter au passage la gestion des erreurs dans les tests 
+  * Créer un package `tests` qui contient 3 tests
+      * AddTwoNumbers (qui passe parce que x+y = 2)
+      * SubtractTwoNumbers (qui échoue parce que x-y ≠ 1)
+      * ThrowAnException (qui detecte une levée d'exception)
+  * Mettre à jour le `Main` pour qu'il exploite ces 3 nouvelles classes
+
+```java
+public static void main(String[] args) {
+    System.out.println("# JUnit Demonstration");
+    (new AddTwoNumbers()).run();
+    (new SubtractTwoNumbers()).run();
+    (new ThrowAnException()).run();
+}
+```
+ 
   

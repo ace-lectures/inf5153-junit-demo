@@ -1,0 +1,64 @@
+@startuml
+
+skinparam nodesep 75
+skinparam ranksep 50
+hide empty members
+
+
+
+package uutf {
+
+  class Assertions {
+    + {static} assertTrue(bool)
+    + {static} assertFalse(bool)
+    + {static} assertEquals(int, int)
+  }
+
+  abstract class TestCase {
+    + run()
+    __
+    # {abstract} test()
+  }
+  note right
+    Template Method
+  end note
+
+}
+
+package java.lang {
+  class AssertionError
+}
+
+AssertionError .. Assertions
+
+
+package tests {
+
+  class AddTwoNumbers {
+    # test()
+  }
+
+  class SubtractTwoNumbers {
+    # test()
+  }
+
+  class ThrowAnError {
+    # test()
+  }
+
+}
+
+TestCase <|-- AddTwoNumbers
+TestCase <|-- SubtractTwoNumbers
+TestCase <|-- ThrowAnError
+
+class Main {
+  + {static} main(String[])
+}
+
+AddTwoNumbers .. Main
+SubtractTwoNumbers .. Main
+ThrowAnError .. Main
+
+
+@enduml
