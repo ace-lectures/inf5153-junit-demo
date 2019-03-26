@@ -87,4 +87,15 @@ notifications:
       * Et `Next` jusqu'a la fin (en JDK 11)
 
   * Créer une classe `Main` à la racine
-    *   
+    * (Montrer le raccourci `psvm`)
+    * (Montrer le raccourci `sout`)
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("# JUnit Demonstration");
+    }
+}
+``` 
+
+
