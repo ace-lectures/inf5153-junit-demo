@@ -84,4 +84,7 @@ notifications:
     * `Import Project`
     * `Import Project from external model` / `Maven`
       * Cocher `Import Maven projects automatically` 
-      *     
+      * Et `Next` jusqu'a la fin (en JDK 11)
+
+  * Créer une classe `Main` à la racine
+    *   
