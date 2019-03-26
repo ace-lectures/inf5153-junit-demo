@@ -98,4 +98,38 @@ public class Main {
 }
 ``` 
 
+## Étape 1 : Assertions
 
+  * Créer un package `uutf` (UQAM Unit Test Framework)
+  * Créer une classe `Assertions`
+  * Définir statiquement `assertTrue` par levée d'une `AssertionError`
+  * Définir statiquement `assertFalse` et `AssertEquals` par réutilisation de `assertTrue`
+  * Mettre à jour le main pour tester les deux cas d'exemple
+
+```java
+public static void main(String[] args) {
+    System.out.println("# JUnit Demonstration");
+    try {
+        System.out.println("## Case 1: x+y == 2");
+        int x = 1;
+        int y = 1;
+        assertEquals(2, x+y);
+        System.out.println("PASSED");
+    } catch(AssertionError ae) {
+        System.out.println("FAILED");
+    }
+    try {
+        System.out.println("## Case 2: x-y == 1");
+        int x = 1;
+        int y = 1;
+        assertEquals(1, x-y);
+        System.out.println("PASSED");
+    } catch(AssertionError ae) {
+        System.out.println("FAILED");
+    }
+}
+```
+
+  * compiler et éxécuter: `mvn clean package; mvn -q exec:java` 
+
+  

@@ -1,0 +1,33 @@
+@startuml
+
+skinparam nodesep 75
+skinparam ranksep 50
+hide empty members
+
+
+
+package uutf {
+
+  class Assertions {
+    + {static} assertTrue(bool)
+    + {static} assertFalse(bool)
+    + {static} assertEquals(int, int)
+  }
+
+}
+
+package java.lang {
+  class AssertionError
+}
+
+Assertions . AssertionError
+
+
+class Main {
+  + {static} main(String[])
+}
+
+Main .. Assertions
+
+
+@enduml
