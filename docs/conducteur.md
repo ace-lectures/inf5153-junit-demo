@@ -176,7 +176,9 @@ public static void main(String[] args) {
   * Reprendre la classe TestCase pour qu'elle enregistre son résultat dans un collecteur 
   * Nettoyer le runner pour qu'il lance un seul test
   * Créer une classe de test `IntegerTests` étendant TestSuite qui ajoute les 3 tests précédents à sa construction
+  * Mettre les 3 tests comme des classes privée interne à la suite de test
   * Modifier le `Main` pour qu'il lance la suite de test et plus les tests atomiques
+
 
 ## Étape 5 : Mise en contexte
 

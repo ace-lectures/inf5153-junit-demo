@@ -20,15 +20,15 @@ package uutf {
 
 package tests {
 
-  class AddTwoNumbers {
+  class AddTwoNumbers <<private>> {
     # test()
   }
 
-  class SubtractTwoNumbers {
+  class SubtractTwoNumbers <<private>> {
     # test()
   }
 
-  class ThrowAnError {
+  class ThrowAnError <<private>> {
     # test()
   }
 
@@ -42,9 +42,9 @@ TestCase <|-- SubtractTwoNumbers
 TestCase <|-- ThrowAnError
 TestSuite <|-- IntegerTests
 
-AddTwoNumbers .. IntegerTests
-SubtractTwoNumbers .. IntegerTests
-ThrowAnError .. IntegerTests
+AddTwoNumbers <--+ IntegerTests
+SubtractTwoNumbers <--+ IntegerTests
+ThrowAnError <--+ IntegerTests
 
 class Main {
   + {static} main(String[])
