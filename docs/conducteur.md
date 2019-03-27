@@ -169,7 +169,12 @@ public static void main(String[] args) {
  
 ## Étape 4 : Suite de Tests
 
-  * Extraire une Interface Test depuis la classe TestCase
-      * Cette interface prend la méthode `run`
-      *   
+  * Extraire une Superclasse Test depuis la classe TestCase
+      * Cette interface prend la méthode `run`, et la rend abstraite
+  * Créer une classe `ResultCollector` qui collecte des résultats de tests
+      * Déplacer le code d'affichage du `Runner` dans le toString du collecteur
+  * Reprendre la classe TestCase pour qu'elle enregistre son résultat dans un collecteur 
+  * Nettoyer le runner pour qu'il lance un seul test
+  * Créer une classe de test `IntegerTests` étendant TestSuite qui ajoute les 3 tests précédents à sa construction
+  * Modifier le `Main` pour qu'il lance la suite de test et plus les tests atomiques
    

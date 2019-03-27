@@ -1,4 +1,5 @@
 import tests.AddTwoNumbers;
+import tests.IntegerTests;
 import tests.SubtractTwoNumbers;
 import tests.ThrowAnException;
 import uutf.TestRunner;
@@ -10,10 +11,6 @@ public class Main {
         System.out.println("# JUnit Demonstration");
 
         TestRunner runner = new TestRunner();
-        runner.addCase(new AddTwoNumbers());
-        runner.addCase(new SubtractTwoNumbers());
-        runner.addCase(new ThrowAnException());
-        runner.run();
-
+        runner.runAndPrint(new IntegerTests());
     }
 }
