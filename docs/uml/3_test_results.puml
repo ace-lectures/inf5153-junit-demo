@@ -19,12 +19,20 @@ package uutf {
     __
     # {abstract} test()
   }
-  note right
-    (almost) Command
-    Template Method
-  end note
+
+  class TestRunner {
+    + addCase(TestCase)
+    + run()
+  }
+
+  TestRunner *-> "0..n\ncases" TestCase
+
 
 }
+
+note "Command pattern" as N1
+N1 .. TestRunner
+N1 .. TestCase
 
 package java.lang {
   class AssertionError
@@ -47,7 +55,11 @@ package tests {
     # test()
   }
 
+  SubtractTwoNumbers -[hidden]- ThrowAnError
+
 }
+
+
 
 TestCase <|-- AddTwoNumbers
 TestCase <|-- SubtractTwoNumbers
@@ -60,6 +72,7 @@ class Main {
 AddTwoNumbers .. Main
 SubtractTwoNumbers .. Main
 ThrowAnError .. Main
+TestRunner .. Main
 
 
 @enduml

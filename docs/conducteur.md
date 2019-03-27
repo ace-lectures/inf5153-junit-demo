@@ -138,6 +138,7 @@ public static void main(String[] args) {
       * Avec une méthode abstraite protégée `test`
       * Et une méthode publique `run` qui reprend le patron du try/catch précédent
       * Rajouter au passage la gestion des erreurs dans les tests 
+      * **Patron Commande + Template Methode** 
   * Créer un package `tests` qui contient 3 tests
       * AddTwoNumbers (qui passe parce que x+y = 2)
       * SubtractTwoNumbers (qui échoue parce que x-y ≠ 1)
@@ -153,4 +154,12 @@ public static void main(String[] args) {
 }
 ```
  
-  
+## Étape 3: Résultats des tests  
+
+  * Créer un énuméré `STATUS`
+      * Avec un `char` comme symbol selon le statut (ok, ko, erreur)
+      * Montrer la génération de constructeur et de toString
+  * Créer une classe `TestResult`
+      * Avec un `name` et un `status`
+      * Montrer la génération du constructeur, du toString, et d'un getter sur le status
+  * Modifier la signature de `TestCase::run` pour qu'elle retourne un `TestResult`  

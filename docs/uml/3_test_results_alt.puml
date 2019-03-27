@@ -1,0 +1,51 @@
+@startuml
+
+skinparam nodesep 75
+skinparam ranksep 50
+hide empty members
+
+
+
+package inheritance {
+
+  abstract class TestResult {
+    - String name
+    __
+    this(String)
+    __
+    + {abstract} isPassed(): bool
+    + {abstract} isFailed(): bool
+    + {abstract} isErrored(): bool
+  }
+
+  class Passed
+  class Failed
+  Class Errored
+
+  TestResult <|-- Passed
+  TestResult <|-- Failed
+  TestResult <|-- Errored
+}
+
+package composition {
+  enum STATUS {
+    PASSED
+    FAILED
+    ERRORED
+  }
+
+  class TR2 as "TestResult" {
+    - String name
+    + STATUS
+    __
+    + this(String)
+    __
+    + setStatus(STATUS)
+    + getStatus(): STATUS
+  }
+
+  TR2 . STATUS
+
+}
+
+@enduml

@@ -3,16 +3,17 @@ package uutf;
 public abstract class TestCase {
 
 
-    public void run() {
+    public final TestResult run() {
+        TestResult result = new TestResult(this.getClass().getCanonicalName());
         try {
-            System.out.print("## Case " + this.getClass().getCanonicalName() + " ");
             test();
-            System.out.println("[X]");
+            result.setStatus(STATUS.PASSED);
         } catch (AssertionError ae) {
-            System.out.println("[ ]");
+            result.setStatus(STATUS.FAILED);
         } catch (Exception e) {
-            System.out.println("[!]");
+            result.setStatus(STATUS.ERRORED);
         }
+        return result;
     }
 
     protected abstract void test();
