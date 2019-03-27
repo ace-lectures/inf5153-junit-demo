@@ -1,0 +1,58 @@
+@startuml
+
+skinparam nodesep 75
+skinparam ranksep 50
+hide empty members
+
+
+
+package uutf {
+
+
+  abstract class Test {
+    ~ run()
+    __
+    # {abstract} run(ResultCollector)
+  }
+
+  abstract class TestCase {
+    # run(ResultCollector)
+    __
+    # setUp()
+    # {abstract} test()
+    # tearDown()
+  }
+
+  abstract class TestSuite {
+    # run(ResultCollector)
+    __
+    # addTest(Test)
+  }
+
+  TestSuite *--> "1..n\ncases" Test
+
+  class TestRunner {
+    + run(Test): ResultCollector
+    + runAndPrint(Test)
+  }
+
+  ResultCollector . TestRunner
+
+  TestRunner .. Test
+
+  Test <|-- TestCase
+  Test <|-- TestSuite
+
+  class ResultCollector {
+    + toString()
+    __
+    ~ addResult(TestResult)
+  }
+
+  ResultCollector *--> "1..n\nresults" TestResult
+  TestResult . Test
+
+}
+
+
+@enduml

@@ -177,4 +177,9 @@ public static void main(String[] args) {
   * Nettoyer le runner pour qu'il lance un seul test
   * Créer une classe de test `IntegerTests` étendant TestSuite qui ajoute les 3 tests précédents à sa construction
   * Modifier le `Main` pour qu'il lance la suite de test et plus les tests atomiques
+
+## Étape 5 : Mise en contexte
+
+  * modifier le test case pour qu'il définisse les méthodes `tearDown` et `setUp`, vide pas default
+  * modifier la TemplateMethod pour executer tearDown et Setup au bon endroit  
    
