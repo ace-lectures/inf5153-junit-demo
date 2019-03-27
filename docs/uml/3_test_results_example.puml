@@ -1,0 +1,60 @@
+@startuml
+
+skinparam nodesep 75
+skinparam ranksep 50
+hide empty members
+
+
+
+package uutf {
+
+
+
+  abstract class TestCase {
+    + run(): TestResult
+    __
+    # {abstract} test()
+  }
+
+  class TestRunner {
+    + addCase(TestCase)
+    + run()
+  }
+
+}
+
+package tests {
+
+  class AddTwoNumbers {
+    # test()
+  }
+
+  class SubtractTwoNumbers {
+    # test()
+  }
+
+  class ThrowAnError {
+    # test()
+  }
+
+  SubtractTwoNumbers -[hidden]- ThrowAnError
+
+}
+
+
+
+TestCase <|-- AddTwoNumbers
+TestCase <|-- SubtractTwoNumbers
+TestCase <|-- ThrowAnError
+
+class Main {
+  + {static} main(String[])
+}
+
+AddTwoNumbers .. Main
+SubtractTwoNumbers .. Main
+ThrowAnError .. Main
+TestRunner .. Main
+
+
+@enduml

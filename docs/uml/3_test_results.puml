@@ -15,7 +15,7 @@ package uutf {
   }
 
   abstract class TestCase {
-    + run()
+    + run(): TestResult
     __
     # {abstract} test()
   }
@@ -26,7 +26,26 @@ package uutf {
   }
 
   TestRunner *-> "0..n\ncases" TestCase
+  TestCase .. TestResult
+  TestRunner .. TestResult
 
+enum STATUS {
+  PASSED
+  FAILED
+  ERRORED
+}
+
+class TestResult {
+  - String name
+  + STATUS
+  __
+  + this(String)
+  __
+  + setStatus(STATUS)
+  + getStatus(): STATUS
+}
+
+TestResult . STATUS
 
 }
 
@@ -41,38 +60,6 @@ package java.lang {
 AssertionError .. Assertions
 
 
-package tests {
-
-  class AddTwoNumbers {
-    # test()
-  }
-
-  class SubtractTwoNumbers {
-    # test()
-  }
-
-  class ThrowAnError {
-    # test()
-  }
-
-  SubtractTwoNumbers -[hidden]- ThrowAnError
-
-}
-
-
-
-TestCase <|-- AddTwoNumbers
-TestCase <|-- SubtractTwoNumbers
-TestCase <|-- ThrowAnError
-
-class Main {
-  + {static} main(String[])
-}
-
-AddTwoNumbers .. Main
-SubtractTwoNumbers .. Main
-ThrowAnError .. Main
-TestRunner .. Main
 
 
 @enduml

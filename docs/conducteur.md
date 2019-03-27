@@ -163,3 +163,13 @@ public static void main(String[] args) {
       * Avec un `name` et un `status`
       * Montrer la génération du constructeur, du toString, et d'un getter sur le status
   * Modifier la signature de `TestCase::run` pour qu'elle retourne un `TestResult`  
+  * Créer une classe TestRunner qui enregistre les Case à exécuter
+      * Définit sa méthode run qui lance les tests et affiche les résultats (et compte chaque type)
+ 
+ 
+## Étape 4 : Suite de Tests
+
+  * Extraire une Interface Test depuis la classe TestCase
+      * Cette interface prend la méthode `run`
+      *   
+   

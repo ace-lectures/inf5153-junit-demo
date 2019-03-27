@@ -14,6 +14,6 @@ public class Main {
         runner.addCase(new SubtractTwoNumbers());
         runner.addCase(new ThrowAnException());
         runner.run();
-        
+
     }
 }

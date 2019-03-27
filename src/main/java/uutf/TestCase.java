@@ -2,7 +2,6 @@ package uutf;
 
 public abstract class TestCase {
 
-
     public final TestResult run() {
         TestResult result = new TestResult(this.getClass().getCanonicalName());
         try {
