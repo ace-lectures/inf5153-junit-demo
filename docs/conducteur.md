@@ -194,6 +194,8 @@ public static void main(String[] args) {
   * Modifier IntegerTest pour qu'il devienne un TestCase, et avec une méthode statique qui build les cas de tests a executer dans une suite de tests
 
 ## Étape 6bis : Intégration Java, le retour
+ * Créer la classe `TestFactory`
+ * Implementer dedans la méthode de scan récupérant les méthodes de tests
 
 
    
