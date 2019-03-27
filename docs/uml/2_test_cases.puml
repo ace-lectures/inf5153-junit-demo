@@ -20,8 +20,8 @@ package uutf {
     # {abstract} test()
   }
   note right
-    (almost) Command
-    Template Method
+    ~ Command
+    + Template Method
   end note
 
 }

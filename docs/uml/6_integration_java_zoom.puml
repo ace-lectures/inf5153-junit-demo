@@ -16,19 +16,24 @@ package uutf {
   abstract class TestCase {
     - String methodName
     __
+    + this()
     + initialize(String): TestCase
     __
     + run(ResultCollector)
     - invokeTestMethod()
     __
-    + setUp()
-    + tearDown()
+    # setUp()
+    # tearDown()
   }
 
   abstract class SingleTestCase {
-      + {abstract} test()
+    - {static} String DEFAULT_TEST_METHOD = "test"
+    __
+    + this()
+    __
+    + {abstract} test()
   }
-  note right: Adapter Pattern
+  note right: Adapter
 
   TestCase <|-- SingleTestCase
 

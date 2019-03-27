@@ -1,10 +1,18 @@
 @startuml
 
-skinparam nodesep 75
-skinparam ranksep 50
-hide empty members
+
+
 
 package uutf {
+
+  class TestFactory {
+    + scan(Class): Test
+    __
+    + isATestCase(Class): bool
+    + extractTests(Class): Test
+  }
+
+  TestFactory .. Test
 
   class Assertions {
     + {static} assertTrue(bool)
@@ -18,7 +26,6 @@ package uutf {
     + {abstract} run(ResultCollector)
   }
 
-  together {
   abstract class TestCase {
     - String methodName
     __
@@ -27,26 +34,20 @@ package uutf {
     + run(ResultCollector)
     - invokeTestMethod()
     __
-    + setUp()
-    + tearDown()
+    # setUp()
+    # tearDown()
   }
 
   abstract class SingleTestCase {
-      + {abstract} test()
-  }
-
-  SingleTestCase -|> TestCase
-}
-
-
-  class TestFactory {
-    + scan(Class): Test
+    - {static} String DEFAULT_TEST_METHOD = "test"
     __
-    + isATestCase(Class): bool
-    + extractTests(Class): Test
+    + this()
+    __
+    + {abstract} test()
   }
 
-  TestFactory . Test
+  TestCase <|- SingleTestCase
+
 
   class TestSuite {
     + run(ResultCollector)
@@ -54,7 +55,7 @@ package uutf {
     + addTest(Test)
   }
 
-  TestSuite *--> "1..n\ncases" Test
+  TestSuite *-> "1..n\ncases" Test
 
   class TestRunner {
     + run(Test)
@@ -71,22 +72,33 @@ package uutf {
   }
 
   ResultCollector *-> "1..n\nresults" TestResult
+  TestSuite .[hidden] ResultCollector
+  TestRunner .[hidden] Assertions
 
-enum STATUS {
-  PASSED
-  FAILED
-  ERRORED
-}
 
-class TestResult {
-  - String name
-  + STATUS
-  __
-  + this(String)
-  __
-  + setStatus(STATUS)
-  + getStatus(): STATUS
-}
+  enum STATUS {
+    PASSED
+    FAILED
+    ERRORED
+    __
+    - char symbol
+    __
+    - this(char)
+    __
+    + toString(): String
+  }
+
+  class TestResult {
+    - String name
+    + STATUS
+    __
+    + this(String)
+    __
+    + setStatus(STATUS)
+    + getStatus(): STATUS
+    __
+    + toString(): String
+  }
 
 TestResult .. STATUS
 TestRunner .. ResultCollector
@@ -97,7 +109,7 @@ package java.lang {
   class AssertionError
 }
 
-AssertionError .. Assertions
+Assertions . AssertionError
 
 
 

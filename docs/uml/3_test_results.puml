@@ -33,6 +33,12 @@ enum STATUS {
   PASSED
   FAILED
   ERRORED
+  __
+  - char symbol
+  __
+  - this(char)
+  __
+  + toString(): String
 }
 
 class TestResult {
@@ -43,13 +49,20 @@ class TestResult {
   __
   + setStatus(STATUS)
   + getStatus(): STATUS
+  __
+  + toString(): String
 }
-
+note left
+ Builder :
+   tr = new(name);
+   ...;
+   tr.setStatus(s);
+end note
 TestResult . STATUS
 
 }
 
-note "Command pattern" as N1
+note "Command" as N1
 N1 .. TestRunner
 N1 .. TestCase
 

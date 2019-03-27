@@ -26,16 +26,19 @@ package uutf {
     + run(ResultCollector)
     - invokeTestMethod()
     __
-    + setUp()
-    + tearDown()
+    # setUp()
+    # tearDown()
   }
 
   abstract class SingleTestCase {
-      + {abstract} test()
+    - {static} String DEFAULT_TEST_METHOD = "test"
+    __
+    + this()
+    __
+    + {abstract} test()
   }
-  note left: Adapter Pattern
 
-  TestCase <|-- SingleTestCase
+  TestCase <|- SingleTestCase
 
 
   class TestSuite {
@@ -44,7 +47,7 @@ package uutf {
     + addTest(Test)
   }
 
-  TestSuite *--> "1..n\ncases" Test
+  TestSuite *-> "1..n\ncases" Test
 
   class TestRunner {
     + run(Test)
@@ -64,21 +67,29 @@ package uutf {
 
   Assertions .[hidden]. ResultCollector
 
-enum STATUS {
-  PASSED
-  FAILED
-  ERRORED
-}
+  enum STATUS {
+    PASSED
+    FAILED
+    ERRORED
+    __
+    - char symbol
+    __
+    - this(char)
+    __
+    + toString(): String
+  }
 
-class TestResult {
-  - String name
-  + STATUS
-  __
-  + this(String)
-  __
-  + setStatus(STATUS)
-  + getStatus(): STATUS
-}
+  class TestResult {
+    - String name
+    + STATUS
+    __
+    + this(String)
+    __
+    + setStatus(STATUS)
+    + getStatus(): STATUS
+    __
+    + toString(): String
+  }
 
 TestResult .. STATUS
 TestRunner .. ResultCollector

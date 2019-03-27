@@ -10,26 +10,16 @@ package uutf {
 
   abstract class Test
   abstract class TestCase
-  abstract class SingleTestCase
-  abstract class TestSuite
   Test <|-- TestCase
-  TestCase <|-- SingleTestCase
-  Test <|-- TestSuite
   Test . TestRunner
   class TestRunner
+  class TestFactory
 
 }
 
 package tests {
 
-  class AddTwoNumbers {
-    # setUp()
-    # test()
-  }
-
   class IntegerTests {
-    + {static} build(): Test
-    __
     + setUp()
     + addTwoNumers()
     + subtractTwoNumbers()
@@ -39,8 +29,6 @@ package tests {
 
 }
 
-SingleTestCase <|-- AddTwoNumbers
-
 TestCase <|-- IntegerTests
 
 class Main {
@@ -49,7 +37,7 @@ class Main {
 
 
 IntegerTests . Main
-TestRunner . Main
-
+TestRunner .. Main
+TestFactory .. Main
 
 @enduml

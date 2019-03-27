@@ -42,7 +42,7 @@ package uutf {
   Test <|-- TestSuite
 
   class ResultCollector {
-    + toString()
+    + toString(): String
     __
     ~ addResult(TestResult)
   }

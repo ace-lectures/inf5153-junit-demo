@@ -44,7 +44,7 @@ package composition {
     + getStatus(): STATUS
   }
 
-  TR2 . STATUS
+  TR2 .. STATUS
 
 }
 

@@ -15,23 +15,22 @@ package uutf {
   }
 
   abstract class Test {
-    + run()
+    ~ run()
     __
-    + {abstract} run(ResultCollector)
+    # {abstract} run(ResultCollector)
   }
   note top
     Composite
-    pattern
   end note
 
   abstract class TestCase {
-    + run(ResultCollector)
+    # run(ResultCollector)
     __
     # {abstract} test()
   }
 
   abstract class TestSuite {
-    + run(ResultCollector)
+    # run(ResultCollector)
     __
     # addTest(Test)
   }
@@ -39,7 +38,8 @@ package uutf {
   TestSuite *--> "1..n\ncases" Test
 
   class TestRunner {
-    + run(Test)
+    + run(Test): ResultCollector
+    + runAndPrint(Test)
   }
 
   TestRunner .. Test
@@ -48,29 +48,39 @@ package uutf {
   Test <|-- TestSuite
 
   class ResultCollector {
-    + addResult(TestResult)
-    + toString()
+    + toString(): String
+    __
+    ~ addResult(TestResult)
   }
+  note bottom: Builder
 
   ResultCollector *-> "1..n\nresults" TestResult
 
   Assertions .[hidden]. ResultCollector
 
-enum STATUS {
-  PASSED
-  FAILED
-  ERRORED
-}
+  enum STATUS {
+    PASSED
+    FAILED
+    ERRORED
+    __
+    - char symbol
+    __
+    - this(char)
+    __
+    + toString(): String
+  }
 
-class TestResult {
-  - String name
-  + STATUS
-  __
-  + this(String)
-  __
-  + setStatus(STATUS)
-  + getStatus(): STATUS
-}
+  class TestResult {
+    - String name
+    + STATUS
+    __
+    + this(String)
+    __
+    + setStatus(STATUS)
+    + getStatus(): STATUS
+    __
+    + toString(): String
+  }
 
 TestResult .. STATUS
 TestRunner .. ResultCollector

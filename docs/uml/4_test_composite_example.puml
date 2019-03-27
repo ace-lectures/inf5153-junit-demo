@@ -24,16 +24,16 @@ package tests {
     # test()
   }
 
-  class SubtractTwoNumbers <<private>> {
-    # test()
-  }
-
   class ThrowAnError <<private>> {
     # test()
   }
 
-  class IntegerTests
-
+  together {
+    class SubtractTwoNumbers <<private>> {
+      # test()
+    }
+    class IntegerTests
+  }
 
 }
 
@@ -51,7 +51,7 @@ class Main {
 }
 
 
-IntegerTests .. Main
+IntegerTests . Main
 TestRunner .. Main
 
 
