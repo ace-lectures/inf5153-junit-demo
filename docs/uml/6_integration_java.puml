@@ -1,0 +1,98 @@
+@startuml
+
+skinparam nodesep 75
+skinparam ranksep 50
+hide empty members
+
+package uutf {
+
+  class Assertions {
+    + {static} assertTrue(bool)
+    + {static} assertFalse(bool)
+    + {static} assertEquals(int, int)
+  }
+
+  abstract class Test {
+    + run()
+    __
+    + {abstract} run(ResultCollector)
+  }
+
+  abstract class TestCase {
+    - String methodName
+    __
+    + initialize(String): TestCase
+    __
+    + run(ResultCollector)
+    - invokeTestMethod()
+    __
+    + setUp()
+    + tearDown()
+  }
+
+  abstract class SingleTestCase {
+      + {abstract} test()
+  }
+  note left: Adapter Pattern
+
+  TestCase <|-- SingleTestCase
+
+
+  class TestSuite {
+    + run(ResultCollector)
+    __
+    + addTest(Test)
+  }
+
+  TestSuite *--> "1..n\ncases" Test
+
+  class TestRunner {
+    + run(Test)
+  }
+
+  TestRunner .. Test
+
+  Test <|-- TestCase
+  Test <|-- TestSuite
+
+  class ResultCollector {
+    + addResult(TestResult)
+    + toString()
+  }
+
+  ResultCollector *-> "1..n\nresults" TestResult
+
+  Assertions .[hidden]. ResultCollector
+
+enum STATUS {
+  PASSED
+  FAILED
+  ERRORED
+}
+
+class TestResult {
+  - String name
+  + STATUS
+  __
+  + this(String)
+  __
+  + setStatus(STATUS)
+  + getStatus(): STATUS
+}
+
+TestResult .. STATUS
+TestRunner .. ResultCollector
+
+}
+
+package java.lang {
+  class AssertionError
+}
+
+AssertionError .. Assertions
+
+
+
+
+
+@enduml

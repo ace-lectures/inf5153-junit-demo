@@ -1,0 +1,51 @@
+@startuml
+
+skinparam nodesep 75
+skinparam ranksep 50
+hide empty members
+
+package uutf {
+
+  abstract class Test {
+    + run()
+    __
+    + {abstract} run(ResultCollector)
+  }
+
+  class TestFactory {
+    + scan(Class): Test
+    __
+    + isATestCase(Class): bool
+    + extractTests(Class): Test
+  }
+
+  TestFactory . Test
+
+  class TestRunner {
+    + run(Test)
+  }
+
+  TestRunner .. Test
+
+  abstract class "..." as Whatever
+
+  Test <|-- Whatever
+}
+
+package tests {
+  class IntegerTests
+}
+
+Whatever <|-- IntegerTests
+
+class Main {
+  + {static} main(String[] args)
+}
+
+Main . TestRunner
+Main .. TestFactory
+Main . IntegerTests
+
+
+
+@enduml

@@ -184,4 +184,16 @@ public static void main(String[] args) {
 
   * modifier le test case pour qu'il définisse les méthodes `tearDown` et `setUp`, vide pas default
   * modifier la TemplateMethod pour executer tearDown et Setup au bon endroit  
+
+  
+## Étape 6 : Intégration Java
+
+  * Modifier la classe TestCase pour qu'elle utilise un nom de méthode non imposé pour le test
+  * Créer une classe SingleTestCase qui adapte la nouvelle classe a l'approche legataire.
+  * Modifier la TestSuite pour ne plus utiliser de l'héritage comme mecanisme de definition
+  * Modifier IntegerTest pour qu'il devienne un TestCase, et avec une méthode statique qui build les cas de tests a executer dans une suite de tests
+
+## Étape 6bis : Intégration Java, le retour
+
+
    

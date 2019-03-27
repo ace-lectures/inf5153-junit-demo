@@ -7,7 +7,7 @@ public class TestSuite extends Test {
 
     private Set<Test> cases = new HashSet<>();
 
-    protected void addTest(Test t) { this.cases.add(t); }
+    public void addTest(Test t) { this.cases.add(t); }
 
     @Override
     protected void run(ResultCollector rc) {
