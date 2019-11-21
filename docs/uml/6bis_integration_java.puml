@@ -1,7 +1,6 @@
 @startuml
 
-
-
+!include ./_commons.style
 
 package uutf {
 

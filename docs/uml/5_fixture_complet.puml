@@ -1,8 +1,6 @@
 @startuml
 
-skinparam nodesep 75
-skinparam ranksep 50
-hide empty members
+!include ./_commons.style
 
 package uutf {
 
